@@ -34,6 +34,20 @@ def load_image(relative_path, tamanho=None,
         image = image.convert_alpha()
         if tamanho is not None and image.get_size() != tamanho:
             image = pygame.transform.smoothscale(image,tamanho)
+    _cache[chave] = image
+    return image
+
+def load_flipped(relative_path,size=None,fallback_color=(255,0,255)):
+    chave = (relative_path,size,"flipped")
+    if chave in _cache:
+        return _cache[chave]
+    base = load_image(relative_path,size,fallback_color)
+    flipped = pygame.transform.flip(base,True,False)
+    _cache[chave]=flipped
+    return flipped
+
+def clear_cache():
+    _cache.clear()
     
     
 
