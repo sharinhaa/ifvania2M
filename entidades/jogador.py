@@ -14,3 +14,9 @@ class Jogador(Personagem):
         "pulo":1,
         "dash":1
     }
+
+def __init__(self,x,y):
+    super().__init__(x, y, 26,40,6)
+    self.sprites = self._load_sprites() #pendente
+
+    
